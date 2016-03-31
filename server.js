@@ -4,7 +4,7 @@ var express = require('express'),
   logger = require('morgan'),
   cors = require('cors'),
   path = require('path'),
-  port = process.env.PORT || 3000,
+  port = process.env.PORT || 8080,
   apiRoutes = require('./api_routes')
 
 app.use(logger('dev'))
