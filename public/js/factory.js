@@ -6,13 +6,19 @@
   restaurantsFactory.$inject = ['$http']
 
   function restaurantsFactory ($http) {
-    var restaurantData = {},
-      apiUrl = 'http://localhost:8080/api/v1/restaurants'
+    var restaurantData = {
+      getAll : function () {
+        console.log('getting all restaurants')
+        return $http.get(apiUrl)
+      }
 
-    restaurantData.getAll = function () {
-      console.log('getting all restaurants')
-      return $http.get(apiUrl)
-    }
+    },
+        apiUrl = 'http://localhost:8080/api/v1/restaurants'
+
+    // restaurantData.getAll = function () {
+    //   console.log('getting all restaurants')
+    //   return $http.get(apiUrl)
+    // }
 
     return restaurantData
   }
