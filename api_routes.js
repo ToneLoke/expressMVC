@@ -4,8 +4,11 @@ var
 
   apiRouter.route('/restaurants')
     .get(ctrl.restaurantController.getAll)
-    .put(ctrl.restaurantController.update)
     .post(ctrl.restaurantController.create)
+  apiRouter.route('/restaurants/:id')
+  //http://localhost:3000/api/v1/restaurants/valueHere
+    .get(ctrl.restaurantController.getSingle)
+    .put(ctrl.restaurantController.update)
     .delete(ctrl.restaurantController.destroy)
 
 

@@ -24,6 +24,13 @@
 
     }
 
+    restCtrl.showRestaurantDetail = function(id){
+      restaurantsFactory.getSingle(id)
+        .then(function (res) {
+          console.log("grabbed single record",res)
+        })
+    }
+
 
   }
 

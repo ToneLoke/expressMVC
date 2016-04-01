@@ -18,6 +18,11 @@
       console.log('creating restaurant')
       return $http.post(apiUrl, restaurant)
     }
+
+    restaurantData.getSingle = function(id){
+      console.log('getting single restaurant data:',id)
+      return $http.get(apiUrl + '/' + id)
+    }
     return restaurantData
   }
 }())

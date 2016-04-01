@@ -1,6 +1,6 @@
 <div class="">
   <h2>Home Page</h2>
   <ul>
-    <li ng-repeat="r in restCtrl.restaurants">{{r.name}}</li>
+    <li ng-repeat="r in restCtrl.restaurants" ng-click="restCtrl.showRestaurantDetail(r._id)">{{r.name}}</li>
   </ul>
 </div>
