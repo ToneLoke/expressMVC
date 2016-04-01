@@ -11,7 +11,7 @@ module.exports = {
     },
     create: function (req, res) {
       console.log('coming from postman:', req.body)
-      var restaurant = db.Restaurant.new(req.body.restaurant)
+      var restaurant = db.Restaurant.new(req.body)
       restaurants.push(restaurant)
       res.json(restaurants)
     },

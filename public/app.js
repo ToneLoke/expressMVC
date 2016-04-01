@@ -12,6 +12,11 @@
         templateUrl: 'partials/home.html',
         controller: 'clientRestController as restCtrl'
       })
+      .state('form', {
+        url: '/addRestaurant',
+        templateUrl: 'partials/form.html',
+        controller: 'clientRestController as restCtrl'
+      })
       $urlRouterProvider.otherwise('/')
   }
 }())
