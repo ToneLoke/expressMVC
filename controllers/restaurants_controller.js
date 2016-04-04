@@ -1,42 +1,54 @@
-var db = require('../models/restaurants'),
-  restaurants = db.Restaurant.find
+var db = require('../models/restaurants')
 
 module.exports = {
   restaurantController: {
-    getAll: function(req, res) {
-      res.json(restaurants)
-    },
-    getSingle: function(req, res) {
-      var id = req.params.id
-      var restaurant = restaurants.filter(function(r) {
-        return r._id == id
+    getAll: function (req, res) {
+      db.Restaurant.find({}, function (err, restaurants) {
+        if (err) {
+          res.json(err)
+        } else {
+          res.json(restaurants)
+        }
       })
-      console.log(restaurant)
-      res.json(restaurant)
     },
-    update: function(req, res) {
+    getSingle: function (req, res) {
       var id = req.params.id
-      var restaurant = restaurants.filter(function(r) {
-        return r._id == id
-      })
-      restaurant = req.body
-      res.json(restaurant)
-    },
-    create: function(req, res) {
-      console.log('coming from postman:', req.body)
-      var restaurant = db.Restaurant.new(req.body)
-      restaurants.push(restaurant)
-      res.json(restaurants)
-    },
-    destroy: function(req, res) {
-      var id = req.params.id
-      var restaurant = restaurants.filter(function(r) {
-        return r._id == id
-      })
-      console.log(restaurant)
 
-      restaurants.splice(restaurants.indexOf(restaurant[0]),1)
-      res.json(restaurants)
+      db.Restaurant.findOne({_id: id}, function (err, rest) {
+        if (err) {
+          res.json(err)
+        } else {
+          console.log('Getting a single Restaurant')
+          res.json(rest)
+        }
+      })
+    },
+    update: function (req, res) {
+      var id = req.params.id
+      db.Restaurant.findOne({_id: id}, function (err, rest) {
+        if (req.body.name) { rest.name = req.body.name}
+        if (req.body.rating) { rest.rating = req.body.rating}
+        rest.save(function (err, r) {
+          res.json(r)
+        })
+      })
+    },
+    create: function (req, res) {
+      console.log('coming from postman:', req.body)
+      var restaurant = new db.Restaurant(req.body)
+      restaurant.save(function (err, rest) {
+        if (err) res.json(err)
+        console.log('Restaurant Created!!')
+        console.log('details: %s', restaurant)
+        res.json(rest)
+      })
+    },
+    destroy: function (req, res) {
+      var id = req.params.id
+      db.Restaurant.remove({_id: id}, function (err) {
+        if (err) res.json(err)
+        res.json({message: 'Deleted User!'})
+      })
     }
   }
 }

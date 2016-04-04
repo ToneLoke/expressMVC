@@ -5,7 +5,14 @@ var express = require('express'),
   cors = require('cors'),
   path = require('path'),
   port = process.env.PORT || 8080,
-  apiRoutes = require('./api_routes')
+  apiRoutes = require('./api_routes'),
+  mongoose = require('mongoose'),
+  databaseURL = 'mongodb://localhost:27017/testUsers'
+
+mongoose.connect(databaseURL, function (err) {
+  console.log('connected to THE MONGODS')
+})
+
 
 app.use(logger('dev'))
 app.use(bodyParser.json())
