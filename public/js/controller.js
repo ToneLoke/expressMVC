@@ -1,36 +1,47 @@
-;(function () {
+;
+(function() {
   'use strict'
-  angular.module('myControllers', [])
+  angular.module('myControllers', ['ui.router'])
     .controller('clientRestController', clientRestController)
 
-  clientRestController.$inject = ['restaurantsFactory']
+  clientRestController.$inject = ['restaurantsFactory', '$location', '$stateParams']
 
-  function clientRestController (restaurantsFactory) {
+  function clientRestController(restaurantsFactory, $location, $stateParams) {
     var restCtrl = this
     restCtrl.newRestaurant = {}
 
     restaurantsFactory.getAll()
-      .then(function (response) {
+      .then(function(response) {
         console.log('Array of restaurants from api', response.data)
         restCtrl.restaurants = response.data
 
       })
 
-    restCtrl.addRestaurant = function (restaurant){
+    restCtrl.addRestaurant = function(restaurant) {
       restaurantsFactory.create(restaurant)
-        .then(function(res){
+        .then(function(res) {
           console.log('Response from server: ', res)
+          $location.path('/')
+        })
+
+    }
+    restCtrl.delete = function(id) {
+      restaurantsFactory.destroy(id)
+        .then(function(res) {
+          console.log('Response from server: ', res)
+          $location.path('/')
         })
 
     }
 
-    restCtrl.showRestaurantDetail = function(id){
-      restaurantsFactory.getSingle(id)
-        .then(function (res) {
-          console.log("grabbed single record",res)
+    if ($stateParams.id) {
+      restaurantsFactory.getSingle($stateParams.id)
+        .then(function(res) {
+          console.log("grabbed single record", res.data)
+          restCtrl.currentRest = res.data
         })
-    }
 
+    }
 
   }
 

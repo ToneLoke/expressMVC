@@ -23,6 +23,10 @@
       console.log('getting single restaurant data:',id)
       return $http.get(apiUrl + '/' + id)
     }
+    restaurantData.destroy = function(id){
+      console.log('getting single restaurant data:',id)
+      return $http.delete(apiUrl + '/' + id)
+    }
     return restaurantData
   }
 }())

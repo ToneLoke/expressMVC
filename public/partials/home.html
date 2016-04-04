@@ -1,6 +1,10 @@
-<div class="">
-  <h2>Home Page</h2>
-  <ul>
-    <li ng-repeat="r in restCtrl.restaurants" ng-click="restCtrl.showRestaurantDetail(r._id)">{{r.name}}</li>
-  </ul>
+<div class="center">
+  <h4 class="black white-text">Mi Favaritos</h4>
+  <div class="chip" ng-repeat="r in restCtrl.restaurants">
+    <a ng-href="#/showRestaurant/{{r._id}}">
+  <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSJSfXUKFe6f1blaiSXo2LkUZpKAXeIdPekso5FMZFCfy6rMq6fGp7IpU4" alt="Contact Person">
+  {{r.name}}
+  </a>
+</div>
+
 </div>

@@ -1,11 +1,22 @@
-<form style="background-color: Burlywood; height: auto;" class="" ng-submit="restCtrl.addRestaurant(restCtrl.newRestaurant)">
-  <input
-  ng-model="restCtrl.newRestaurant.name" type="text" name="name" value="">
-  <input
-  ng-model="restCtrl.newRestaurant.address" type="text" name="address" value="">
-  <input
-  ng-model="restCtrl.newRestaurant.rating" type="number" name="rating" value="">
-  <input
-  ng-model="restCtrl.newRestaurant.type" type="text" name="type" value="">
-  <button type="submit" name="button">Submit/awesome</button>
-</form>
+<h3>Add New Restaurant</h3>
+<div class="row">
+  <form class="col s12" ng-submit="restCtrl.addRestaurant(restCtrl.newRestaurant)">
+    <div class="row">
+      <div class="input-field col s6">
+        <input ng-model="restCtrl.newRestaurant.name" id="rName" type="text" class="validate">
+        <label for="rName">Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="rAddress" ng-model="restCtrl.newRestaurant.address" type="text" class="validate">
+        <label for="rAddress">Address</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input ng-model="restCtrl.newRestaurant.rating" id="disabled" type="number" class="validate">
+        <label for="disabled">Rating</label>
+      </div>
+    </div>
+    <button class="btn" type="submit" name="button">Submit</button>
+  </form>
+</div>
