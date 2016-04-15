@@ -8,6 +8,7 @@
 
   function clientRestController(restaurantsFactory, $location, $stateParams) {
     var restCtrl = this
+    restCtrl.edit = false
     restCtrl.newRestaurant = {}
 
     restaurantsFactory.getAll()
@@ -31,7 +32,16 @@
           console.log('Response from server: ', res)
           $location.path('/')
         })
-
+    }
+    restCtrl.editMe = function () {
+      restCtrl.edit = true
+    }
+    restCtrl.editRestaurant = function(rest) {
+      restaurantsFactory.update(rest._id,rest)
+        .then(function(res) {
+          console.log('Response from server: ', res)
+          $location.path('/')
+        })
     }
 
     if ($stateParams.id) {

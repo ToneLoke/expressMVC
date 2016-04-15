@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row center" ng-show="!restCtrl.edit">
   <div class="col s12 m6">
     <div class="card blue-grey darken-1">
       <div class="card-content white-text">
@@ -6,9 +6,32 @@
         <p>{{restCtrl.currentRest.rating}}</p>
       </div>
       <div class="card-action">
-        <a href="#">Edit Me</a>
+        <a ng-click="restCtrl.editMe()">Edit Me</a>
         <a ng-click="restCtrl.delete(restCtrl.currentRest._id)">Delete Me</a>
       </div>
     </div>
+  </div>
+  {{restCtrl.edit}}
+  <div class="row center" ng-if="restCtrl.edit">
+    <h3>Edit Restaurant</h3>
+    <form class="col s12" ng-submit="restCtrl.editRestaurant(restCtrl.currentRest)">
+      <div class="row">
+        <div class="input-field col s6">
+          <input ng-model="restCtrl.currentRest.name" id="rName" type="text" class="validate">
+
+        </div>
+        <div class="input-field col s6">
+          <input id="rAddress" ng-model="restCtrl.currentRest.address" type="text" class="validate">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input ng-model="restCtrl.currentRest.rating" id="disabled" type="number" class="validate">
+
+        </div>
+      </div>
+      <button class="btn" type="submit" name="button">Update</button>
+    </form>
   </div>
 </div>

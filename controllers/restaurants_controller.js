@@ -28,6 +28,7 @@ module.exports = {
       db.Restaurant.findOne({_id: id}, function (err, rest) {
         if (req.body.name) { rest.name = req.body.name}
         if (req.body.rating) { rest.rating = req.body.rating}
+        if (req.body.address) { rest.address = req.body.address}
         rest.save(function (err, r) {
           res.json(r)
         })

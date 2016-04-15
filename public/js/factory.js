@@ -27,6 +27,10 @@
       console.log('getting single restaurant data:',id)
       return $http.delete(apiUrl + '/' + id)
     }
+    restaurantData.update = function(id, rest){
+      console.log('getting single restaurant data:',id)
+      return $http.put(apiUrl + '/' + id, rest)
+    }
     return restaurantData
   }
 }())
